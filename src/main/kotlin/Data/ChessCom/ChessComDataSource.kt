@@ -38,17 +38,19 @@ class ChessComDataSource {
 
     }
 
-    suspend fun getChessGamesForMonth(
-        username: String,
-        allMonths: List<String>,
-        numberOfMonths: Int = 4
-    ): List<AllGames?> {
+    suspend fun getChessGamesForMonth(username: String, allMonths: List<String>, numberOfMonths: Int = 1): List<AllGames?> {
+        var months = numberOfMonths
+
+        if(numberOfMonths > allMonths.size){
+            months = allMonths.size - 1
+        }
+
 
         val listOfAllGames: MutableList<AllGames> = mutableListOf()
         var counter = 0
         //Vil starte på det siste elementet siden det er nyeste måneden
         var indexCheck = allMonths.size - 1
-        while (counter < numberOfMonths) {
+        while (counter < months) {
             try {
                 listOfAllGames.add(
                     client.get(allMonths[indexCheck])

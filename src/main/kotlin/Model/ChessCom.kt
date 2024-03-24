@@ -19,6 +19,8 @@ data class Game(
     val url : String,
     val pgn : String,
     val time_class : String,
+    val initial_setup : String,
+    val fen : String,
     val white : White,
     val black : Black,
     val accuracies : Accuracy? = null
